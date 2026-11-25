@@ -190,8 +190,6 @@ theorem exists_chart {F : Type*} [Zero F] {x : Cone n F} (hx : BlockNonzero x) :
     ∃ c : (k : ι) → Fin (n k + 1), ∀ k, x k (c k) ≠ 0 :=
   ⟨fun k ↦ (Function.ne_iff.mp (hx k)).choose, fun k ↦ (Function.ne_iff.mp (hx k)).choose_spec⟩
 
-def samplePoint : Cone (fun _ : Unit ↦ 1) (AlgebraicClosure ℚ) := fun _ ↦ ![1, 2]
-
 end
 
 end GroundTheory.Heights₂.Heights

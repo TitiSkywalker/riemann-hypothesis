@@ -29,19 +29,6 @@ def LamPos (D : D7) (μ : D.what₂.Tup) (j : ℕ) : Prop :=
     (∀ f ∈ D.what₂.isot j σ, D.what₂.thetaP μ j (D.what₂.thetaT μ j f) = ((D.what₂.lamP μ j σ : ℝ) : ℂ) • f) ∧
     (D.what₂.isot j σ ≠ ⊥ → 0 < D.what₂.lamP μ j σ)
 
-def JointOccurrenceCondition (D : D7) : Prop :=
-  ∀ (σ : D.what₂.FT) (k : Fin 2) (v : D.nd.PlG k), D.ntypes.cuspidal σ →
-    Formalism.MainNotions.N.TameGen D.nd (D.nd.plOm.1 (D.naut.plGw k v)) (D.ntypes.tg k v) →
-    ∀ i : D.nd.Loc, D.nd.l i ≠ D.host.g k → D.what₂.isot (D.nd.j i) σ ≠ ⊥ → D.nd.goodRow σ →
-      haveI : Fact (D.host.g k).Prime := ⟨D.host.g_prime k⟩
-      haveI : Fact (D.what₂.places.resChar (D.nd.w i)).Prime := ⟨D.what₂.places.resChar_prime (D.nd.w i)⟩
-      Matrix.charpoly ((D.ntypes.rbar σ (D.nd.w i) (D.ntypes.tg k v) : GL (Fin D.R.r) _) :
-          Matrix (Fin D.R.r) (Fin D.R.r) _) =
-        ((Formalism.CyclotomicNorms.rootsBar (D.nd.lab k σ v)).map fun x =>
-          X - C (D.ntypes.iota k v (D.nd.w i) (Formalism.CyclotomicNorms.primeToPart (D.what₂.places.resChar (D.nd.w i)) x))).prod ∧
-      ∃ φ : G D.host.E D.nd.Om,
-        D.ntypes.rbar σ (D.nd.w i) (φ * D.ntypes.tg k v * φ⁻¹) = D.ntypes.rbar σ (D.nd.w i) (D.ntypes.tg k v) ^ D.host.g k
-
 def RbarTie (D : D7) : Prop :=
   (∀ (σ : D.what₂.FT) (lam : D.what₂.places.Pl), (∃ a : D.nd.Loc, D.nd.w a = lam) →
     Formalism.MainNotions.N.IsSSRep (D.ntypes.rbar σ lam)) ∧

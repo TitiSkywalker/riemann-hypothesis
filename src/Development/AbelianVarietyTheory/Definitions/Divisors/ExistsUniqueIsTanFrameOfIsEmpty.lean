@@ -534,10 +534,6 @@ abbrev CoefHom (io : c.F →+* T.Fr) (K₀ : Type) [CommRing K₀] [Algebra c.F 
   letI := io.toAlgebra
   K₀ →ₐ[c.F] T.Fr
 
-def secOrd (n : ℕ) (φ : CoefHom c io K₀) (y : IntFr Xo c T io) (s : RulK Xo c K₀) : EReal :=
-  letI := io.toAlgebra
-  nval T.V n (val φ y.1 s)
-
 variable (Φ : Finset (E →+* ℂ))
 
 def IsWedgeOrd (n : ℕ) (φ : CoefHom c io K₀) (y : IntFr Xo c T io) (s : ι → RulK Xo c K₀) (w : EReal) : Prop :=
@@ -547,8 +543,6 @@ def IsWedgeOrd (n : ℕ) (φ : CoefHom c io K₀) (y : IntFr Xo c T io) (s : ι 
 def wedgeOrd (n : ℕ) (φ : CoefHom c io K₀) (y : IntFr Xo c T io) (s : ι → RulK Xo c K₀) : EReal :=
   if h : ∃! w, IsWedgeOrd Φ n φ y s w then h.choose else ⊥
 
-
-def normOfOrd (p : ℕ) (w : EReal) : ENNReal := EReal.exp (-(w * (Real.log p : ℝ)))
 
 variable {Φ}
 

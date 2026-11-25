@@ -29,6 +29,4 @@ def lamA (ι : Type) [Fintype ι] (N j : ℕ) : Pol ι N := ∑ τ : ι, (pHigh 
 def fibPt (ι : Type) [Fintype ι] (N j : ℕ) : Pol ι N :=
   ∏ x : ι × Fin N, (-X x) ^ (if (x.2 : ℕ) < j then j - 1 - (x.2 : ℕ) else N - 1 - (x.2 : ℕ))
 
-def dimGr (ι : Type) [Fintype ι] (N j : ℕ) : ℕ := Fintype.card ι * (j * (N - j))
-
 end GlobalTheory.FlagPoly

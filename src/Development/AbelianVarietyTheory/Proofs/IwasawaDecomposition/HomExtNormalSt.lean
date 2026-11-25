@@ -104,14 +104,6 @@ def HomExtNormalSt : Prop :=
     ∀ f : (Over.pullback j).obj G ⟶ (Over.pullback j).obj G', IsMonHom f →
       ∃! F : G ⟶ G', IsMonHom F ∧ (Over.pullback j).map F = f
 
-def PullSt : Prop :=
-  ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (R R' : Type) [CommRing R] [IsDomain R] [IsLocalRing R]
-    [CommRing R'] [IsDomain R'] [IsLocalRing R'] (φ : R →+* R') (t : SAB H (Sp R)) (P : PELUnif (maximalIdeal R) t),
-    IsCN R → IsCN R' → Function.Injective φ → IsLocalHom φ → P.TorsionIso →
-    ∃ (t' : SAB H (Sp R')) (_ : SABMap t' t (spMap φ)) (P' : PELUnif (maximalIdeal R') t')
-      (e : P'.D.toPre.X ≃ₗ[𝓞 E] P.D.toPre.X), P'.TorsionIso ∧
-      ∀ y r, PsiCoord P.D.toPre (e y) r → ∃ u : R'ˣ, PsiCoord P'.D.toPre y (u * φ r)
-
 end Steps
 
 end GlobalTheory.TorRef

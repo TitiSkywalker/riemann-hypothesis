@@ -18,9 +18,6 @@ section Generic
 
 variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
 
-def sqBall (r : ℕ) (E : Type*) [NormedAddCommGroup E] (R : ℝ) : Set (Fin r → E) :=
-  {u | ∑ k, ‖u k‖ ^ 2 ≤ R ^ 2}
-
 variable {V W : Type*} [NormedAddCommGroup V] [NormedSpace ℝ V] [FiniteDimensional ℝ V]
   [NormedAddCommGroup W] [NormedSpace ℝ W] [FiniteDimensional ℝ W]
   [MeasurableSpace V] [BorelSpace V]
