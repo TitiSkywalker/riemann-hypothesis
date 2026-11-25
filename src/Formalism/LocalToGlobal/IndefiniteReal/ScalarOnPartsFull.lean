@@ -218,21 +218,10 @@ def EErec (M : DSModel (D.sp.Y 0) (parB (tparRec D) 0)) (J : Set (GA D (D.sp.Y 0
     (e : (GA D (D.sp.Y 0) → ℂ) →ₗ[ℂ] (GA D (D.sp.Y 0) → ℂ)) : Submodule ℂ (MMap M) :=
   EE θ (tparRec D) M J χ e
 
-def WgoodRec (j : ℕ) (M : DSModel (D.sp.W j) (parW (D.sp.W j) (Formalism.L2.NTheta.wtOf D (D.sp.W j))))
-    (J : Set (GA D (D.sp.W j))) (χ : GA D (D.sp.W j) → ℂ)
-    (e : (GA D (D.sp.W j) → ℂ) →ₗ[ℂ] (GA D (D.sp.W j) → ℂ)) : Submodule ℂ (MMap M) :=
-  Wgood θ M J χ e
-
 def EEpart (M : DSModel (D.sp.Y 0) (parB (tparRec D) 0)) (J : Set (GA D (D.sp.Y 0))) (χ : GA D (D.sp.Y 0) → ℂ)
     (e : (GA D (D.sp.Y 0) → ℂ) →ₗ[ℂ] (GA D (D.sp.Y 0) → ℂ)) (Sb : Finset (HeightOneSpectrum (𝓞 D.host.F)))
     (c : HeightOneSpectrum (𝓞 D.host.E) → List ℤ → ℂ) : Submodule ℂ (MMap M) :=
   partDual θ M J χ Sb c ⊓ EErec θ M J χ e
-
-def Wpart (j : ℕ) (M : DSModel (D.sp.W j) (parW (D.sp.W j) (Formalism.L2.NTheta.wtOf D (D.sp.W j))))
-    (J : Set (GA D (D.sp.W j))) (χ : GA D (D.sp.W j) → ℂ)
-    (e : (GA D (D.sp.W j) → ℂ) →ₗ[ℂ] (GA D (D.sp.W j) → ℂ)) (Sb : Finset (HeightOneSpectrum (𝓞 D.host.F)))
-    (c : HeightOneSpectrum (𝓞 D.host.E) → List ℤ → ℂ) : Submodule ℂ (MMap M) :=
-  partFull θ M J χ Sb c ⊓ WgoodRec θ j M J χ e
 
 theorem hasPeterssonInner_unique (M : DSModel V S) (μ : Measure (GA D V)) (𝓕 : Set (GA D V)) (T T' : MMap M) {c c' : ℂ}
     (v : M.Vec) (hv : ∏ τ, ⟪(v τ : M.H τ), (v τ : M.H τ)⟫_ℂ ≠ 0)

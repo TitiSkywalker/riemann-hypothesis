@@ -217,30 +217,6 @@ def division_rows_rational_lattice (D : D7) : Prop :=
   ∀ y ∈ UPts σ J (FiniteAdeleRing (𝓞 D.host.F) D.host.F),
     ratPts σ J (FiniteAdeleRing (𝓞 D.host.F) D.host.F) ⊓ U.map (MulAut.conj y).toMonoidHom = ⊥
 
-def Conclusion8 (D : D7) : Prop :=
-  ∃ aa aab : FractionalIdeal (nonZeroDivisors (𝓞 D.host.E)) D.host.E,
-    (∀ x : D.host.E, x ∈ aab ↔ D.host.conj x ∈ aa) ∧
-    ((differentIdeal (𝓞 D.host.K) (𝓞 D.host.E) : Ideal (𝓞 D.host.E)) :
-      FractionalIdeal (nonZeroDivisors (𝓞 D.host.E)) D.host.E)⁻¹ = aa * aab ∧
-    (∀ cc : Ideal (𝓞 D.host.K), cc ≠ ⊥ →
-      (∀ x : D.host.E,
-        (∀ y ∈ ((Ideal.map (algebraMap (𝓞 D.host.K) (𝓞 D.host.E)) cc : Ideal (𝓞 D.host.E)) :
-            FractionalIdeal (nonZeroDivisors (𝓞 D.host.E)) D.host.E) * aa,
-          x * y ∈ ((Ideal.map (algebraMap (𝓞 D.host.K) (𝓞 D.host.E)) cc : Ideal (𝓞 D.host.E)) :
-            FractionalIdeal (nonZeroDivisors (𝓞 D.host.E)) D.host.E) * aa) ↔ IsIntegral ℤ x) ∧
-      ∃ ξ : D.host.E, ξ ∈ D.host.K ∧ D.host.conj ξ = -ξ ∧ (∀ φ ∈ PhiEmb D, 0 < (φ ξ).im) ∧
-        ∀ y : D.host.E,
-          y ∈ ((Ideal.map (algebraMap (𝓞 D.host.K) (𝓞 D.host.E)) cc : Ideal (𝓞 D.host.E)) :
-            FractionalIdeal (nonZeroDivisors (𝓞 D.host.E)) D.host.E) * aa ↔
-          ∀ x ∈ ((Ideal.map (algebraMap (𝓞 D.host.K) (𝓞 D.host.E)) cc : Ideal (𝓞 D.host.E)) :
-            FractionalIdeal (nonZeroDivisors (𝓞 D.host.E)) D.host.E) * aa,
-            Algebra.trace ℚ D.host.E (ξ * D.host.conj x * y) ∈ (algebraMap ℤ ℚ).range) ∧
-    (∀ p : ℕ, p.Prime → (primesOver (span {(p : ℤ)}) (𝓞 D.host.K)).ncard = 2 →
-      ∀ P : Ideal (𝓞 D.host.E), P.IsPrime → P.LiesOver (span {(p : ℤ)}) →
-        ∀ σ τ : D.host.E ≃ₐ[ℚ] D.host.E, τ ∈ MulAction.stabilizer (D.host.E ≃ₐ[ℚ] D.host.E) P →
-          (D.host.galE (σ * τ) ∈ D.R.Psi ↔
-            D.host.galE σ ∈ D.R.Psi))
-
 end Formalism.MainNotions.UnusedSlot33
 
 end

@@ -303,29 +303,6 @@ theorem intAt_negB {a : E} (h : IntAt P a) : IntAt P (-a) := by
   have := (IntAt.coe P (-1)).mul h
   simpa using this
 
-def intSubB : Subring E where
-  carrier := {a | IntAt P a}
-  mul_mem' := IntAt.mul
-  one_mem' := by
-    have := IntAt.coe P 1
-    simpa using this
-  add_mem' := IntAt.add
-  zero_mem' := by
-    have := IntAt.coe P 0
-    simpa using this
-  neg_mem' := intAt_negB P
-
-def redHomB : intSubB P →+* (𝓞 E ⧸ P.asIdeal) where
-  toFun a := redP P a.1
-  map_one' := by
-    have := reduction_coe P 1
-    simpa using this
-  map_mul' a b := reduction_mul a.2 b.2
-  map_zero' := by
-    have := reduction_coe P 0
-    simpa using this
-  map_add' a b := reduction_add a.2 b.2
-
 theorem reduction_det_eq_det_reduction₂ {m : ℕ} (A : Matrix (Fin m) (Fin m) E) (hA : ∀ i j, IntAt P (A i j)) :
     redP P A.det = (Matrix.of fun i j => redP P (A i j)).det := by
   apply _root_.GlobalTheory.SymLevelInv.reduction_det <;> assumption

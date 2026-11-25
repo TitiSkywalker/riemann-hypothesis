@@ -178,8 +178,6 @@ open Classical in
 def diaT (u : Pr.Word) : DiaG (E := X.E) (ST := Pr.vT u) := fun P =>
   if h : IsUnit (Ideal.Quotient.mk P.1.asIdeal (X.conjO (Pr.piT u))) then h.unit else 1
 
-def colDia (R : Ranks) (u : Pr.Word) (j : ℕ) : DiaG (E := X.E) (ST := Pr.vT u) := if j < R.m then 1 else diaT u
-
 end Cols
 
 end Formalism.L2.Col

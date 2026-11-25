@@ -120,10 +120,6 @@ def restr (D : D7) (p : ℕ) [Fact p.Prime] {N0 N1 : ℕ} (z : Pl D) (Th : MvPow
     MvPowerSeries (ZMod (nP D p) × Fin N0 × Fin N1) ℂ_[p] :=
   fun m => MvPowerSeries.coeff (m.mapDomain fun v => (orbMap D p z v.1, v.2)) Th
 
-def restr1 (D : D7) (p : ℕ) [Fact p.Prime] {N0 N1 : ℕ} (z : Pl D) (Th : MvPowerSeries (Pl D × Fin N0 × Fin N1) ℂ_[p]) :
-    MvPowerSeries (ZMod 1 × Fin N0 × Fin N1) ℂ_[p] :=
-  fun m => MvPowerSeries.coeff (m.mapDomain fun v => (z, v.2)) Th
-
 def orbLoc (E : Ent D) (p : ℕ) [Fact p.Prime] (h : OrbOK D p) (u : D.what₂.Word) (i : ℕ) (z : Pl D)
     (Th : MvPowerSeries (ZMod (nP D p) × Fin (D.R.N i) × Fin (D.R.N (i + 1))) ℂ_[p]) : product_zeroth_first_parts.Loc where
   J := { l := p, five_le_l := h.five, d := nP D p, d_even := h.even, two_le_d := h.two, N0 := D.R.N i, N1 := D.R.N (i + 1),

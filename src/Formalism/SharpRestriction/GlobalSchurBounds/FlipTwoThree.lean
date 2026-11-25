@@ -62,23 +62,6 @@ def dualSub {E : Type} [Field E] [NumberField E] [StarRing E] (S : HSpace E) (L 
 def LatT {E : Type} [Field E] [NumberField E] [StarRing E] (S : HSpace E) (q : ℕ) (L : Submodule (𝓞 E) S.V) : Prop :=
   (∀ x ∈ L, x ∈ dualSub S L) ∧ L.toAddSubgroup.relIndex (dualSub S L) = q
 
-def SameCls {E : Type} [Field E] [NumberField E] [StarRing E] (S : HSpace E) (M : ℕ) {n : ℕ}
-    (L L' : Submodule (𝓞 E) S.V) (e e' : Fin n → S.V) : Prop :=
-  ∃ γ : S.V ≃ₗ[E] S.V, (∀ x y, S.hT (γ x) (γ y) = S.hT x y) ∧ (∀ x, x ∈ L ↔ γ x ∈ L') ∧
-    ∀ a, ∃ z ∈ dualSub S L', γ (e a) - e' a = (M : E) • z
-
-def ClsTie (D : D7) (u : D.what₂.Word) : Prop :=
-  (∀ i ≤ D.R.m, (∀ c, LatT (D.sp.X i) (Tu D u ^ (2 * D.R.f)) (D.clsLat u i c)) ∧
-    ∃ e : (D.mem u).C.cls i → Fin (D.R.N i) → (D.sp.X i).V,
-      (∀ c a, e c a ∈ dualSub (D.sp.X i) (D.clsLat u i c)) ∧
-      ∀ c c', SameCls (D.sp.X i) (Tu D u * D.host.g 0 * D.host.g 1) (D.clsLat u i c) (D.clsLat u i c')
-        (e c) (e c') → c = c') ∧
-  ∃ LP : (D.fm u).clsP → Submodule (𝓞 D.host.E) D.sp.X'.V,
-    (∀ c, Submodule.IsLattice D.host.E (LP c) ∧ LatT D.sp.X' 1 (LP c)) ∧
-    ∃ e : (D.fm u).clsP → Fin (D.R.N D.R.m - 1) → D.sp.X'.V,
-      (∀ c a, e c a ∈ dualSub D.sp.X' (LP c)) ∧
-      ∀ c c', SameCls D.sp.X' (Tu D u * D.host.g 0 * D.host.g 1) (LP c) (LP c') (e c) (e c') → c = c'
-
 def adm3 (D : D7) : Prop := ∀ (u : D.what₂.Word) (c : (D.mem u).C.cls 0), Subsingleton ((D.mem u).C.stab 0 c)
 
 def aT (D : D7) (u : D.what₂.Word) (τ : D.what₂.Tau) : ℝ := (lamCol D u τ 0 : ℝ)

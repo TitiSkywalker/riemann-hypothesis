@@ -95,10 +95,6 @@ def PBridge : Prop :=
 def PLapComm : Prop :=
   ∀ (H : Type) (N0 N1 : ℕ) (t t' : H), Commute (lapT (H := H) N0 N1 t) (lapT N0 N1 t')
 
-def PLapZero : Prop :=
-  ∀ (H : Type) [Fintype H] [DecidableEq H] (N0 N1 : ℕ) (nu : Bool × H → YoungDiagram) (I : ColChoice N1 nu)
-    (t : H) (n : ℕ), cPr (nu (false, t)) (nu (true, t)) < n → (lapT N0 N1 t ^ n) (Gxz N0 N1 nu I) = 0
-
 def dRow {H : Type} {N0 N1 : ℕ} (t : H) (r : ℕ) (b : Fin N1) :
     Derivation ℤ (PolyXZ H N0 N1) (PolyXZ H N0 N1) :=
   ∑ a : Fin N0, (MvPolynomial.X (Sum.inl ((false, t), r, a)) : PolyXZ H N0 N1) •
@@ -115,15 +111,6 @@ def SDegD {A : Type} [CommRing A] {ι : Type} (d : ι → Derivation ℤ A A) : 
 def PSDegMul : Prop :=
   ∀ (A : Type) [CommRing A] (ι : Type) (d : ι → Derivation ℤ A A) (f g : A) (k l : ℕ),
     SDegD d k f → SDegD d l g → SDegD d (k + l) (f * g)
-
-def PLapForms : Prop :=
-  ∀ (H : Type) [Fintype H] [DecidableEq H] (N0 N1 : ℕ) (α : YoungDiagram)
-    (I : ∀ c : Fin (α.rowLen 0), Fin (α.colLen c) ↪o Fin N1) (t : H) (g : PolyXZ H N0 N1) (d n : ℕ),
-    (∀ (a : Fin N0) (b : Fin N1), pd (Sum.inr ((false, t), a, b)) g = 0) →
-    SDegD (fun b : Fin N1 => dRow (N0 := N0) t 0 b) d g →
-    (α.cells.card - α.rowLen 0) + min (α.rowLen 0) d < n →
-    (lapT N0 N1 t ^ n) ((∏ c : Fin (α.rowLen 0),
-      minorXZ (Lt := Bool × H) N0 N1 (false, t) (α.colLen c) (I c)) * g) = 0
 
 def PExpCoeff : Prop :=
   ∀ (H : Type) [Fintype H] [DecidableEq H] (N0 N1 p : ℕ) [Fact p.Prime] (S : ℂ_[p]) (ut : H → ℂ_[p])

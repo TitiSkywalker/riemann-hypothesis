@@ -249,11 +249,6 @@ def SplitIso : Prop :=
     IsUnit J₁.det →
     ∃ e : UJ (swapR R) (splitJ J₁) ≃* GL n R, ∀ g, e g = bc (RingHom.fst R R) (g : GL n (R × R))
 
-def AMFKFinite : Prop :=
-  ∀ (G : Type) [Group G] (Γ K : Subgroup G) (k : Type) [CommRing k] [IsNoetherianRing k]
-    (W : Type) [AddCommGroup W] [Module k W] [Module.Finite k W] (ρK : Representation k K W),
-    Finite (ClassSet Γ K) → Module.Finite k (AMFK k Γ K ρK)
-
 def DosetIndMem : Prop :=
   ∀ (G : Type) [Group G] (K : Subgroup G) (k : Type) [CommRing k] (g : G),
     dosetInd k K g ∈ Hecke k K

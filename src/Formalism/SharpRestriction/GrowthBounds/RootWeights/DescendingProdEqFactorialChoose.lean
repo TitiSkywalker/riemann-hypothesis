@@ -20,12 +20,6 @@ section v2dpCon
 
 variable {R : Type*} [CommRing R] {ι : Type*} [Fintype ι] {n : ℕ}
 
-def polarizationSource (LL : Letters ι) (a b : Fin n) (l : ι) : ι × Fin n := if LL.vec l then (l, b) else (l, a)
-
-def polarizationTarget (LL : Letters ι) (a b : Fin n) (l : ι) : ι × Fin n := if LL.vec l then (l, a) else (l, b)
-
-def polarizationLetterSign (R : Type*) [CommRing R] (LL : Letters ι) (l : ι) : R := if LL.vec l then 1 else -1
-
 theorem glAct_pow_eq_factorial_divPow (LL : Letters ι) (S : Set ι) (a b : Fin n) (hab : a ≠ b) (k : ℕ) :
     (glAct R LL S a b : Module.End R (MvPolynomial (ι × Fin n) R)) ^ k = k.factorial • divPow R LL S a b k := by
   apply _root_.Formalism.MainNotions.LemmaBAlt.gl_action_pow_eq_factorial_smul <;> assumption

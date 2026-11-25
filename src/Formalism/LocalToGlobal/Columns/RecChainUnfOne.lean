@@ -54,15 +54,6 @@ abbrev XiFam (Pr : Primes X) (R : Ranks) (u : Pr.Word) : Type :=
 
 variable (Ξ : XiFam Pr R u)
 
-def xiKer (i : ℕ) (p : DecoSet (E := X.E) (n := R.N i) (ST := Pr.vT u) (SG := Pr.vGs)) (p' : DecoSet (E := X.E) (n := R.N (i + 1)) (ST := Pr.vT u) (SG := Pr.vGs)) :
-    (stepGSD W Λ u i).V →ₗ[X.K] (stepGSD W Λ u (i + 1)).V :=
-  kerOf (stepC W Ch sel mu cst Am u i (W.lamTrue u (i + 1))) (Sall sel mu u) (cAof sel mu cst) (cBof sel mu cst u)
-    p.1.N (frsD sel mu p) p'.1.N (frsD sel mu p') (Ξ i p p')
-
-def XiEquiv : Prop :=
-  ∀ i, ClsEq (S := stepGSD W Λ u i) (S' := stepGSD W Λ u (i + 1)) (xiKer W Λ Ch sel mu cst Am u Ξ i)
-
-
 variable {W Λ Ch sel mu cst Am u Ξ}
 
 end Xi

@@ -16,14 +16,6 @@ universe u
 
 namespace Formalism.L2.Indef.Tree
 
-def reducedForms (D : ℤ) : Finset (ℤ × ℤ × ℤ) :=
-  ((Finset.Icc 1 |D| ×ˢ (Finset.Icc (-|D|) |D| ×ˢ Finset.Icc 1 |D|))).filter fun f =>
-    f.2.1 ^ 2 - 4 * f.1 * f.2.2 = D ∧ |f.2.1| ≤ f.1 ∧ f.1 ≤ f.2.2 ∧
-      ((|f.2.1| = f.1 ∨ f.1 = f.2.2) → 0 ≤ f.2.1) ∧ Int.gcd (Int.gcd f.1 f.2.1) f.2.2 = 1
-
-def formRoot (D : ℤ) (f : ℤ × ℤ × ℤ) : ℂ :=
-  (-(f.2.1 : ℂ) + Complex.I * (Real.sqrt (-(D : ℝ)) : ℂ)) / (2 * (f.1 : ℂ))
-
 namespace KoszulExact
 
 def form {R : Type*} [CommRing R] {D : ℕ} (s : Fin D → R) : Module.Dual R (Fin D → R) :=

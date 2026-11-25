@@ -57,8 +57,6 @@ def NodeSizes {m : ℕ} (T2 : Finset H) (b b' η : ℝ) (w : H → Fin m → E0 
   (∀ u0 j ρ, IsThickAt T2 u0 ρ → b ≤ w u0 j ρ ∧ w u0 j ρ ≤ b + η + 1) ∧
   (∀ u0 j ρ, InPhi ρ → ¬ IsThickAt T2 u0 ρ → w u0 j ρ ≤ 2 * b')
 
-def moveCost (x Cd CL : ℝ) : ℝ := Cd + 3 * (Real.log (x + 1) + Cd + CL * Real.log x)
-
 end
 
 def SizeWindows (C ε x : ℝ) (n nT nT2 m : ℕ) (b k aE Err : ℝ) : Prop :=

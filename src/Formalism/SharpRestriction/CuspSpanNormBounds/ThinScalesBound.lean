@@ -46,20 +46,6 @@ def ThOK {F : Type} [Field F] [ValuativeRel F] [TopologicalSpace F]
     ∀ x, (Matrix.of fun a b => (if x = 0 then (1 : ℂ) else 0) * N0 (h a) (h b) -
       Th x a b).PosSemidef)
 
-def FamilyTheoremThreePassage {F : Type} [Field F] [ValuativeRel F] [TopologicalSpace F]
-    {E : Type} [CommRing E] [Algebra F E] [TopologicalSpace E] [MeasurableSpace E]
-    (M : Model F E) (r n : ℕ) : Prop :=
-  ∀ (g : SplitG M.L), M.split = some g →
-  ∀ (V : Type) [AddCommGroup V] [Module E V] (H : HermSp M V), Module.finrank E V = n →
-  ∀ (t : Term V M r), H.IsTerm t →
-  ∀ nn ∈ H.NGrp t.abelian₂ t.f, ∀ nn' ∈ H.NGrp t.abelian₂ t.f',
-    (∀ x ∈ t.abelian₂, nn x - nn' x ∈ H.smulLat (algebraMap F E (g.q : F)) t.abelian₂) →
-    ∃ uL uU : Matrix (Fin (r + 1)) (Fin (r + 1)) E,
-      (∀ a b, uL a b ∈ M.R ∧ uU a b ∈ M.R) ∧
-      (∀ a, uL a a = 1 ∧ uU a a = 1) ∧ (∀ a b, a < b → uL a b = 0 ∧ uU b a = 0) ∧
-      H.ZZplus ⟨t.abelian₂, fun a => nn (t.f a), fun a => nn' (t.f' a), t.T, t.T'⟩ =
-        uL * H.ZZplus t * uU
-
 def FrameK {F : Type} [Field F] [ValuativeRel F] [TopologicalSpace F]
     {E : Type} [CommRing E] [Algebra F E] [TopologicalSpace E] [MeasurableSpace E]
     {M : Model F E} {V : Type} [AddCommGroup V] [Module E V] (H : HermSp M V) {r : ℕ}

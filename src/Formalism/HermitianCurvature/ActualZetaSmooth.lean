@@ -44,16 +44,4 @@ def NFOrder0 : Prop :=
 
 def NFOrder0OfParts : Prop := MulZExists → ActualZetaSmooth → NFOrder0
 
-def RelExtra {P : M.Par} {A : Type} [Ring A] [StarRing A] [Algebra ℂ A] (d : Q.NFData P A) : Prop :=
-  d.L.nabs * d.L.nab - d.L.nab * d.L.nabs = (d.κ fun ρ => ((2 * M.aC P ρ * P.TT : ℝ) : ℂ)) * d.L.GGi * d.L.GGi ∧
-  ∀ l ∈ Finset.Icc 1 (P.k - 1), (d.SS l * star (d.SS l) = d.κ fun ρ => ((M.NrmDown P l ρ : ℝ) : ℂ)) ∧
-    ∀ j ∈ Finset.Icc 1 (P.k - 1), j ≠ l →
-      d.SS j * d.SS l * (d.κ fun ρ => ((M.rho P ρ j - M.rho P ρ l - 1 : ℝ) : ℂ)) =
-        d.SS l * d.SS j * (d.κ fun ρ => ((M.rho P ρ j - M.rho P ρ l + 1 : ℝ) : ℂ)) ∧
-      star (d.SS l) * d.SS j = d.SS j * star (d.SS l)
-
-def SExtra : Prop :=
-  ∀ (P : M.Par) (A : Type) [Ring A] [StarRing A] [Algebra ℂ A] (d : Q.NFData P A), P.OK → Fr.IsStarLevel d.L → d.Rel →
-    Wd.IsStart d.QQ (M.qC P) → RelExtra d
-
 end Formalism.FourierDecayAlt.NF

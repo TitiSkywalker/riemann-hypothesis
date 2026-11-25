@@ -671,20 +671,6 @@ theorem lowAt_max (D : Formalism.BasicNotions.D7) {p : ℕ} [Fact p.Prime] (X : 
   · exact Pend.LowAt.mono Y h (hU v j hj)
   · exact Pend.LowAt.mono Y h (hZ v j hj)
 
-def NumCmp (D : Formalism.BasicNotions.D7) (L : SizeData₂ D) (X : Inst D L) (Y : LatInst D) (K : Consts) : Prop :=
-  ∀ hT : GatTies D, LatTied hT X Y → ∀ (u : D.what₂.Word) (w : D.what₂.places.Pl)
-    (hg : GIdx D.host (D.mem u).A.T (D.what₂.places.resChar w)),
-    ∀ t0 ∈ reps X (D.what₂.places.resChar w), ∀ j ∈ SizeData₂.lifts D,
-      Formalism.MainNotions.G.gU X K (aL L) (bL L) (D.what₂.places.resChar w) j t0 ≤
-        Formalism.MainNotions.FormalGroupSystem.gB (D.what₂.places.resChar w) (Y.Fl u w hg).t ((Y.Fl u w hg).TT (Y.vOf u w hg t0))
-          ((D.gat u w hg).P.lam0 (Y.vOf u w hg t0)) ((Y.Fl u w hg).w (Y.vOf u w hg t0)) j ∧
-      Formalism.MainNotions.G.g0 X K (aL L) (bL L) (D.what₂.places.resChar w) j t0 ≤
-        Formalism.MainNotions.FormalGroupSystem.gA (D.what₂.places.resChar w) (Y.Fl u w hg).t ((Y.Fl u w hg).TT (Y.vOf u w hg t0))
-          ((D.gat u w hg).P.lam0 (Y.vOf u w hg t0)) ((Y.Fl u w hg).w (Y.vOf u w hg t0)) j ∧
-      Formalism.MainNotions.FormalGroupSystem.Pr (Y.Fl u w hg).t (D.gat u w hg).P.r ((D.gat u w hg).P.lam0 (Y.vOf u w hg t0))
-                ((Y.Fl u w hg).w (Y.vOf u w hg t0)) j ≤
-        Formalism.MainNotions.G.Pr X K (bL L) (D.what₂.places.resChar w) j t0
-
 def SmallResidueCharComparison (D : Formalism.BasicNotions.D7) (L : SizeData₂ D) (X : Inst D L) (Y : LatInst D) (K : Consts) : Prop :=
   ∀ hT : GatTies D, LatTied hT X Y → ∀ (u : D.what₂.Word) (w : D.what₂.places.Pl)
     (hg : GIdx D.host (D.mem u).A.T (D.what₂.places.resChar w)),
@@ -699,13 +685,6 @@ def SmallResidueCharComparison (D : Formalism.BasicNotions.D7) (L : SizeData₂ 
       Formalism.MainNotions.FormalGroupSystem.Pr (Y.Fl u w hg).t (D.gat u w hg).P.r ((D.gat u w hg).P.lam0 (Y.vOf u w hg t0))
                 ((Y.Fl u w hg).w (Y.vOf u w hg t0)) j ≤
         Formalism.MainNotions.G.Pr X K (bL L) (D.what₂.places.resChar w) j t0
-
-def NumericalComparisonAt (D : Formalism.BasicNotions.D7) (L : SizeData₂ D) (X : Inst D L) (Y : LatInst D) (C₀ : ℝ) : Prop :=
-  ∀ K : Consts, C₀ ≤ K.dl1 → C₀ ≤ K.dl2 → C₀ ≤ K.Pr1 → Formalism.MainNotions.G.rG L.sc < D.R.k → 2 ≤ L.sc.x → Formalism.MainNotions.SizesAt L →
-    SmallResidueCharComparison D L X Y K
-
-def NumericalComparisonUniform : Prop :=
-  ∃ C₀ : ℝ, ∀ (D : Formalism.BasicNotions.D7) (L : SizeData₂ D) (X : Inst D L) (Y : LatInst D), NumericalComparisonAt D L X Y C₀
 
 def admitted (D : Formalism.BasicNotions.D7) {p : ℕ} [Fact p.Prime] (X : Sys p) (Y : Pend X) : Prop :=
   adm1 D ∧ adm2 D X Y ∧ adm2b D X Y ∧ adm2c D X Y ∧ adm3 D X Y ∧ adm3b D X ∧ ArchimedeanSignatureMatching D X Y ∧ adm5 D X Y ∧ MinkowskiCounting D X Y ∧ adm6 D X Y ∧

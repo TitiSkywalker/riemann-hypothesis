@@ -442,8 +442,6 @@ theorem sharp_downTo (D : D7) (μ : D.what₂.Tup) (j : ℕ) :
     rw [ih]
     all_goals rfl
 
-def frg (D : D7) : ℝ := (D.R.f : ℝ) * D.R.r / (min (D.host.g 0) (D.host.g 1) : ℕ)
-
 def LevelRatioBound (D : D7) : Prop := 4 * D.R.f * D.R.r ≤ min (D.host.g 0) (D.host.g 1)
 
 end Record
