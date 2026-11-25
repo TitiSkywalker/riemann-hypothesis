@@ -220,12 +220,6 @@ open CompanionTheory.RgExh.U (adC)
 
 variable {n : ℕ}
 
-theorem key_lt' (p : Pos n) : CompanionTheory.D.LK.key p < (n + 1) * (n + 1) := by
-  unfold CompanionTheory.D.LK.key
-  have h1 := p.1.1.2
-  have h2 := p.1.2.2
-  nlinarith
-
 def tw (i j : Lt n) : ℂ := if keyL j < keyL i then -1 else 1
 
 theorem tw_self (i : Lt n) : tw i i = 1 := by simp [tw]

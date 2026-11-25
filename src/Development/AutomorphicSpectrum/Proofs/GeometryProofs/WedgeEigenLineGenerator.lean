@@ -80,10 +80,6 @@ theorem comb_mul {m n k : ℕ} {v : Fin n → (epsAt x ⟶ G)} {u : Fin m → (e
     ∀ i, IsComb ((A * C) i) v (w i) :=
   _root_.GlobalTheory.CompanionTheory.Ar.CombMul.isComb_mul S G F x m n k v u w A C hv hC hA
 
-theorem comb_self {n : ℕ} {v : Fin n → (epsAt x ⟶ G)} (hv : ∀ i, IsTanAt G x (v i)) :
-    ∀ i, IsComb ((1 : Matrix (Fin n) (Fin n) F) i) v (v i) :=
-  _root_.GlobalTheory.CompanionTheory.Ar.Flat.isComb_unit_row S G F x n v hv
-
 theorem comb_eig {P : Type} [CommRing P] (act : OAct P G) (σ : P →+* F) {n : ℕ} {v : Fin n → (epsAt x ⟶ G)}
     {cf : Fin n → F} {w : epsAt x ⟶ G} (hv : ∀ i, IsEigVec act x σ (v i)) (h : IsComb cf v w) :
     IsEigVec act x σ w :=

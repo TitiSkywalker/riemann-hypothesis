@@ -1167,8 +1167,6 @@ namespace StandardSymmetricSums
 def loF (n : ℕ) (i : Fin (n / 2)) : Fin n := ⟨i.val, by have := i.isLt; omega⟩
 def hiF (n : ℕ) (i : Fin (n / 2)) : Fin n := ⟨n - 1 - i.val, by have := i.isLt; omega⟩
 
-theorem lOf_eq {n : ℕ} (x : Fin n → ℤ) (i : Fin (n / 2)) : lOf x i = x (loF n i) - x (hiF n i) := rfl
-
 end StandardSymmetricSums
 
 open StandardSymmetricSums

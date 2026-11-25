@@ -551,30 +551,6 @@ theorem minor_single {R : Type} [CommRing R] (h : Matrix (Fin 2) (Fin 2) R) (a b
 
 variable {Ω}
 
-theorem isMultiHomog_X' {k : NonPluckerBlocks blkH} (i : Fin 3) :
-    IsMultiHomog (X ⟨k, i⟩ : MRing (baseIdx ιH blkH)) fun _ => 1 := by
-  classical
-  intro m hm k'
-  rw [support_X, Finset.mem_singleton] at hm
-  subst hm
-  obtain rfl : k' = k := Subsingleton.elim _ _
-  simp [Finsupp.single_apply]
-
-theorem isMultiHomog_C' (n : ℤ) : IsMultiHomog (C n : MRing (baseIdx ιH blkH)) fun _ => 0 := by
-  classical
-  intro m hm k
-  rw [support_C] at hm
-  split_ifs at hm
-  · simp at hm
-  · rw [Finset.mem_singleton] at hm
-    subst hm
-    simp
-
-theorem regAt_int (x : (Σ k, baseIdx ιH blkH k) → Ω) {Q : Ideal (MRing (baseIdx ιH blkH))} (hQ : Q.IsPrime)
-    (n : ℤ) : RegAt x Q (n : Ω) :=
-  ⟨fun _ => 0, C n, C 1, isMultiHomog_C' n, isMultiHomog_C' 1,
-    fun h => hQ.ne_top ((Ideal.eq_top_iff_one _).2 (by simpa using h)), by simp⟩
-
 end FlagEx
 
 end GlobalTheory.CompanionTheory.Ar.PB

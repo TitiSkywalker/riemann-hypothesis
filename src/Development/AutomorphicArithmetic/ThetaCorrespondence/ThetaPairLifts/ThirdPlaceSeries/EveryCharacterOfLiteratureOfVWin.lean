@@ -281,9 +281,6 @@ section -- clump:auto
 
 namespace GlobalTheory.AbLaw
 
-theorem principalPolarisation_unique_section : GlobalTheory.Published.principalPolarisationOneSection :=
-  finrank_sections_principal_polarisation_eq_one
-
 end GlobalTheory.AbLaw
 end -- clump:auto
 end -- clump:auto
@@ -314,42 +311,6 @@ open CompanionTheory.D.gk.HC (KF)
 
 variable {n : ℕ} {ε : Fin n → Bool} {H : Type} [NormedAddCommGroup H] [InnerProductSpace ℂ H]
   {σ : Matrix (Fin n) (Fin n) ℂ → (H →L[ℂ] H)}
-
-theorem dRep_eq_dS (σ : Matrix (Fin n) (Fin n) ℂ → (H →L[ℂ] H)) (X : Matrix (Fin n) (Fin n) ℂ) (w : H) :
-    Formalism.L2.Theta.dRep σ X w = dS σ X w := by
-  unfold Formalism.L2.Theta.dRep dS
-  congr 1
-
-theorem isLieStable_of [CompleteSpace H] (hσ : Formalism.MainNotions.S.IsURepOn (Formalism.MainNotions.S.UJset ε) σ)
-    (hirr : Formalism.MainNotions.S.IsIrredOn (Formalism.MainNotions.S.UJset ε) σ) : IsLieStable ε σ (kFinSub ε σ) := by
-  apply _root_.GlobalTheory.CompanionTheory.KFinLink.isLieStable_of <;> assumption
-
-theorem lieIrr_of [CompleteSpace H] (hσ : Formalism.MainNotions.S.IsURepOn (Formalism.MainNotions.S.UJset ε) σ)
-    (hirr : Formalism.MainNotions.S.IsIrredOn (Formalism.MainNotions.S.UJset ε) σ) (S : Submodule ℂ H) (hS : S ≤ kFinSub ε σ)
-    (hL : IsLieStable ε σ S) : S = ⊥ ∨ S = kFinSub ε σ := by
-  obtain ⟨h1, -⟩ := CompanionTheory.D.gk.HC.K_finite_smooth_vectors n ε H σ hσ hirr
-  let N : Submodule ℂ (smD ε σ) := S.comap (smD ε σ).subtype
-  have hNK : (N : Set (smD ε σ)) ⊆ KF ε σ := fun v hv => hS hv
-  have hst : ∀ a b, ∀ v ∈ N, smE ε σ a b v ∈ N := by
-    intro a b v hv
-    show ((smE ε σ a b v : smD ε σ) : H) ∈ S
-    rw [smE_apply hσ]
-    have e1 := hL _ (ReciprocityTheory.ChartRestriction.DS.SmDerA.inG_cpart1 ε (Matrix.single a b 1)) (v : H) hv
-    have e2 := hL _ (ReciprocityTheory.ChartRestriction.DS.SmDerA.inG_cpart2 ε (Matrix.single a b 1)) (v : H) hv
-    rw [dRep_eq_dS] at e1 e2
-    exact S.add_mem e1 (S.smul_mem _ e2)
-  rcases CompanionTheory.D.gk.HC.uIrr n ε H σ hσ hirr N hNK hst with h | h
-  · left
-    refine eq_bot_iff.2 fun v hv => ?_
-    have hvN : (⟨v, h1 v (hS hv)⟩ : smD ε σ) ∈ N := hv
-    rw [h] at hvN
-    have := (Submodule.mem_bot ℂ).1 hvN
-    exact (Submodule.mem_bot ℂ).2 (congrArg Subtype.val this)
-  · right
-    refine le_antisymm hS fun v hv => ?_
-    have hvK : (⟨v, h1 v hv⟩ : smD ε σ) ∈ KF ε σ := hv
-    rw [← h] at hvK
-    exact hvK
 
 end GlobalTheory.KFinLinkPort
 

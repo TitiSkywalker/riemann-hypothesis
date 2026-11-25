@@ -175,11 +175,6 @@ section
 
 variable {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k]
 
-theorem polyBall_le_of_valuation_le {n : ℕ} {s₁ s₂ : kˣ}
-    (h : valuation k (s₁ : k) ≤ valuation k (s₂ : k)) : polyBall n s₁ ≤ polyBall n s₂ := by
-  intro x hx i
-  exact le_trans (show valuation k (Multiplicative.toAdd x i) ≤ valuation k (s₁ : k) from hx i) h
-
 theorem resChr_polyBall_eq (ψ : AddChar k Circle) {n : ℕ} {c s : kˣ}
     (hc : ∀ y ∈ cball c, ψ y = 1) {a b : Fin n → k}
     (hab : ∀ i, (a - b) i ∈ cball (c * s⁻¹)) :

@@ -822,14 +822,6 @@ theorem map_fixed {G V W : Type} [Group G] [AddCommGroup V] [Module ℂ V] [AddC
     change φ _ = φ _
     rw [equiv_apply, e2, hw h hh]
 
-theorem hasCentralChar_of_equiv {k V W : Type} [Field k] [AddCommGroup V] [Module ℂ V] [AddCommGroup W] [Module ℂ W]
-    {n : ℕ} {π : Representation ℂ (GL (Fin n) k) V} {σ : Representation ℂ (GL (Fin n) k) W} (φ : π.Equiv σ)
-    {ω : kˣ →* ℂˣ} (h : HasCentralChar π ω) : HasCentralChar σ ω := by
-  intro z w
-  have e2 : φ (φ.toLinearEquiv.symm w) = w := φ.toLinearEquiv.apply_symm_apply w
-  rw [← e2, ← equiv_apply, h z]
-  exact φ.toLinearEquiv.map_smul _ _
-
 variable {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k]
 
 theorem transfer {W W' V V' : Type} [AddCommGroup W] [Module ℂ W] [AddCommGroup W'] [Module ℂ W']

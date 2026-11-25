@@ -22,10 +22,6 @@ theorem im_ne_zero {σ : E →ₐ[F] E} (h : IsCMExt F E σ) {β : E} (hβ : σ 
     (τ β).im ≠ 0 :=
   PositivityTheory.RL.im_ne_zero h hβ τ
 
-theorem exists_basis {σ : E →ₐ[F] E} (h : IsCMExt F E σ) {β : E} (hβ : σ β ≠ β) :
-    ∃ B : Module.Basis (Fin 2) F E, B 0 = 1 ∧ B 1 = β := by
-  apply PositivityTheory.RL.exists_basis <;> assumption
-
 theorem eq_add_tmul (B : Module.Basis (Fin 2) F E) (x : AF F ⊗[F] E) :
     x = (Algebra.TensorProduct.basis (AF F) B).repr x 0 ⊗ₜ[F] B 0 +
       (Algebra.TensorProduct.basis (AF F) B).repr x 1 ⊗ₜ[F] B 1 :=

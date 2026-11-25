@@ -502,17 +502,6 @@ theorem isClosed_btSub {α : Type} [LinearOrder α] (b : Fin n → α) :
   exact isClosed_iInter fun i => isClosed_iInter fun j => isClosed_iInter fun _ =>
     isClosed_eq (continuous_entry i j) continuous_const
 
-theorem isClosed_triSub {α : Type} [LinearOrder α] (b : Fin n → α) (hb : Function.Injective b) :
-    IsClosed ((triSub b hb : Subgroup (GL (Fin n) L)) : Set (GL (Fin n) L)) := by
-  have : ((triSub b hb : Subgroup (GL (Fin n) L)) : Set (GL (Fin n) L)) = ((btSub b : Subgroup (GL (Fin n) L)) : Set (GL (Fin n) L)) ∩ ⋂ i : Fin n,
-      {g : GL (Fin n) L | (g : Matrix (Fin n) (Fin n) L) i i = 1} := by
-    ext g
-    simp only [Set.mem_inter_iff, Set.mem_iInter, Set.mem_setOf_eq]
-    exact Iff.rfl
-  rw [this]
-  exact (isClosed_btSub b).inter (isClosed_iInter fun i =>
-    isClosed_eq (continuous_entry i i) continuous_const)
-
 end Top
 
 end Tri
